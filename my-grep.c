@@ -4,6 +4,7 @@
 
 #define MAX_LINE 8192
 
+// Etsii hakusanaa tiedostosta ja tulostaa osumat
 void search_in_file(FILE *input, const char *searchterm)
 {
     char *line = NULL;
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
+        // Virheellinen kutsu
         printf("my-grep: searchterm [file ...]\n");
         return 1;
     }
@@ -30,15 +32,18 @@ int main(int argc, char *argv[])
 
     if (argc == 2)
     {
+        // Ei tiedostoja, luetaan stdinistä
         search_in_file(stdin, searchterm);
     }
     else
     {
+        // Käy läpi tiedostot
         for (int i = 2; i < argc; i++)
         {
             FILE *file = fopen(argv[i], "r");
             if (file == NULL)
             {
+                // Virhe
                 printf("my-grep: cannot open file\n");
                 return 1;
             }
